@@ -57,4 +57,4 @@ This function returns only the memory of the object itself and not the
 memory of object it refers to or contains. After writing my deep_getsizeof()
 I discovered this [recursive sizeof recipe](http://code.activestate.com/recipes/577504).
 But, I like my version better and also it gave me the opportunity to add 
-another function to the **deep** repo.up   
+another function to the **deep** repo.   
