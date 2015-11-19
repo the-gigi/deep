@@ -10,7 +10,7 @@ deeply nested Python objects:
 
 The code is in a module called [deeper.py](https://github.com/the-gigi/deep/blob/master/deeper.py)
 
-The tests are in [deeper.py](https://github.com/the-gigi/deep/blob/master/deeper_test.py)
+The tests are in [deeper_test.py](https://github.com/the-gigi/deep/blob/master/deeper_test.py)
 
 Note: it is not a Python package. Just a couple of functions.
 
