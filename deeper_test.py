@@ -2,7 +2,10 @@ from collections import OrderedDict
 import copy
 from unittest import TestCase
 from datetime import datetime
-from deeper import deep_compare
+
+import sys
+
+from deeper import deep_compare, deep_getsizeof
 
 
 class DeeperTest(TestCase):
@@ -142,3 +145,68 @@ class DeeperTest(TestCase):
         expected = ('Objects are not the same. Pointer: /[1][c][first]. '
                     'Reason: Different objects. Extra: (1, 3)')
         self._test(a, b, expected)
+
+    def test_deep_getsizeof(self):
+        g = sys.getsizeof
+        d = deep_getsizeof
+
+        data = 5
+        s1 = g(data)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        data = 8.9945
+        s1 = g(data)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        data = ''
+        s1 = g(data)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        data = 'abcd'
+        s1 = g(data)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        data = ()
+        s1 = g(data)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        data = []
+        s1 = g(data)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        data = set()
+        s1 = g(data)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        data = {}
+        s1 = g(data)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        data = [1, 2, 3, 4]
+        s1 = g(data) + 4 * g(1)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        # Object counted once when repeated (the integer 1)
+        data = [1, 1, 1, 1]
+        s1 = g(data) + g(1)
+        s2 = d(data, set())
+        self.assertEqual(s1, s2)
+
+        data = dict(a=dict(b=1, c=[2,3]))
+        self.assertEqual(834, d(data, set()))
+
+
+
+
+
+
+
