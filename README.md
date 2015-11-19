@@ -1,4 +1,6 @@
-# deep
+# Deep
+
+![deep image](http://i.imgur.com/tEZ0FD1.png)
 
 The **deep** repository exposes two functions for performing operations on 
 deeply nested Python objects:
